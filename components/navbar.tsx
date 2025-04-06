@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -26,27 +27,9 @@ const mobileMenuVariants = {
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  // Add scroll effect to change navbar style
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full border-b transition-all duration-300",
-        scrolled
-          ? "bg-gray-900 shadow-md backdrop-blur-md"
-          : "bg-gray-900 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-gray-900/95"
-      )}
-    >
+    <header className="bg-gray-950" >
       <div className="container mx-auto px-4 md:px-6 flex h-12 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="font-bold text-2xl tracking-tight text-white">
@@ -102,7 +85,7 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="container mx-auto px-4 md:hidden py-4 bg-gray-900 border-t border-gray-700"
+            className="container mx-auto px-4 md:hidden py-4 bg-gray-900  border-gray-700"
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"

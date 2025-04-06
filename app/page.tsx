@@ -2,8 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Layers, Zap } from "lucide-react";
+import { ArrowRight, Code, Layers, Zap, Download } from "lucide-react"; // Added Download icon
 import type { Metadata } from "next";
+import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 
 // Define metadata for SEO
 export const metadata: Metadata = {
@@ -74,7 +75,7 @@ export default function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="py-8 md:py-12 bg-gradient-to-b from-gray-900 to-white">
+      <section className="py-8 md:py-12 bg-gradient-to-b from-gray-950 to-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] items-center justify-center">
             <div className="flex flex-col justify-center space-y-6">
@@ -87,13 +88,42 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Link href="/projects">
+                <Link href="/Projects">
                   <Button>
                     View My Work
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
+                {/* Download Resume Button */}
+                <a href="/resume/resume.pdf" download>
+                  <Button variant="outline">
+                    Download Resume
+                    <Download className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
               </div>
+               {/* Connect Section */}
+          <div>
+            <div className="flex space-x-4">
+              {[
+                { href: "https://github.com/Akipkoech", icon: Github, label: "GitHub" },
+                { href: "https://www.linkedin.com/in/alex-koech-a699b0222?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", icon: Linkedin, label: "LinkedIn" },
+                { href: "https://www.instagram.com/alex.koech?igsh=ajcwMWFoNzdxYWg=", icon: Instagram, label: "Instagram" },
+                { href: "mailto:ronohalex651@gmail.com", icon: Mail, label: "Email" },
+              ].map((social) => (
+                <Link
+                  key={social.label}
+                  href={social.href}
+                  target={social.label !== "Email" ? "_blank" : undefined}
+                  rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
+                  className="text-gray-900 hover:text-red-500 transition-colors duration-200 focus:text-red-500 focus:outline-none"
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-5 w-5" />
+                </Link>
+              ))}
+            </div>
+          </div>
             </div>
             <div className="relative flex items-center justify-center">
               <div className="relative">
@@ -112,7 +142,7 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
